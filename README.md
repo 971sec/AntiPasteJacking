@@ -21,4 +21,10 @@ PARTICULAR PURPOSE. See the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) for more
 details.
 
+## Exceptions
+
+The AntiPasteJacking and 971sec logos, trademarks, domain names, and other
+brand features used in this program cannot be reused without permission and no
+license is granted thereto.
+
 
