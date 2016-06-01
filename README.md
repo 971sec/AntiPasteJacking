@@ -10,10 +10,15 @@ extension mitigates this threat by overriding document.execCommand and disable C
 ## Usage
 
 1. Open Chrome and go to [chrome://extensions/](chrome://extensions/) and tick "Developer mode" checkbox
+
 ![Step1](https://cloud.githubusercontent.com/assets/19666696/15699998/33deef2a-27e2-11e6-8579-5ea96fae51ec.png)
+
 2. Click on "Load unpacked extension..." button and select folder containing the unpacked extension.
+
 ![Step2](https://cloud.githubusercontent.com/assets/19666696/15700070/c9d7ecca-27e2-11e6-8fb1-99f2a68f298d.png)
+
 3. Enjoy!
+
 ![After](https://cloud.githubusercontent.com/assets/19666696/15700509/42576fc0-27e5-11e6-8c15-1c4efa42bd3d.gif)
 
 ## License
