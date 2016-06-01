@@ -18,41 +18,17 @@
     Mohammed El Amin Chemouri <chemouri_2@yahoo.fr>
 */
 var root = document.documentElement;
-var AntiPasteJacking = document.createElement('input');
-AntiPasteJacking.type = 'hidden';
-AntiPasteJacking.name = 'AntiPasteJacking';
-
-new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.attributeName == 'value')
-        chrome.runtime.sendMessage({AntiPasteJacking: true}, function() {
-          AntiPasteJacking.removeAttribute('value');
-        });
-  });
-}).observe(AntiPasteJacking, {attributes: true});
-
-(document.body || root).appendChild(AntiPasteJacking);
-var mock = document.createElement('script');
-mock.textContent =
-    'var eventListenerOrg = EventTarget.prototype.addEventListener; \n\
-var execCommandOrg = document.execCommand; \n\
-var AntiPasteJacking = document.getElementsByName(\'AntiPasteJacking\')[0]; \n\
-EventTarget.prototype.addEventListener = \n\
-    function(type, listener, useCapture) { \n\
-      if ((type.toUpperCase() == \'COPY\') || (type.toUpperCase() == \'CUT\')) \n\
-          eventListenerOrg.call(this, type, function() { \n\
-            AntiPasteJacking.value = true; \n\
-          }); \n\
-      else eventListenerOrg.call(this, type, listener, useCapture); \n\
-    } \n\
+var shim = document.createElement('script');
+shim.textContent =
+'var execCommandOrg = document.execCommand; \n\
 document.execCommand = function(command, showUI, commandValue) { \n\
 var result = false;\n\
 if ((command.toUpperCase() == \'COPY\') || (command.toUpperCase() == \'CUT\')) {\n\
-	AntiPasteJacking.value = true; \n\
+	console.log(\'AntiPasteJacking: COPY and CUT commands are disabled!\');\n\
 } else { \n\
     execCommandOrg.call(document, command, showUI, commandValue); \n\
     result = true; \n\
   } \n\
   return result; \n\
 }';
-(document.head || root).appendChild(mock);
+(document.head || root).appendChild(shim);
